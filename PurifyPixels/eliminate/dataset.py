@@ -26,8 +26,6 @@ lowres_transform = A.Compose(
 both_transforms = A.Compose(
     [
         A.RandomCrop(width=HIGH_RES, height=HIGH_RES),
-        A.HorizontalFlip(p=0.5),
-        A.RandomRotate90(p=0.5),
     ]
 )
 
