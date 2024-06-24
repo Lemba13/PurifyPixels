@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "PurifyPixels"
+version = "0.1.0"
+description = "A tool to detect and eliminate steganographic content from images using GAN"
+readme = "README.md"
+requires-python = ">=3.9"
+
+authors = [
+    { name = "Chinglemba", email = "chinglembak4@gmail.com" },
+    { name = "name", email = "email@domain.com"}
+]
+
+license = { file = "LICENSE" }
+
+[tool.setuptools]
+packages = ["PurifyPixels"]
