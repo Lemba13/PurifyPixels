@@ -44,7 +44,7 @@ class EliDataset(Dataset):
 
         encoded_img = cv2.cvtColor(encoded_img, cv2.COLOR_BGR2RGB)
 
-        encoded_img = both_transforms(image=encoded_img)["image"]
+        # encoded_img = both_transforms(image=encoded_img)["image"]
         low_res = lowres_transform(image=encoded_img)["image"]
 
         return low_res.type(torch.FloatTensor), self.filepaths[index]
