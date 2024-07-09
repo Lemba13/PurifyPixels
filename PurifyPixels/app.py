@@ -1,20 +1,22 @@
-from flask import Flask, request, jsonify, send_file
+from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi.responses import StreamingResponse
 import os
 
 from PIL import Image
 import io
 from .eliminate.infer import purify_image
 
-app = Flask(__name__)
+app = FastAPI()
 
-@app.route('/purify', methods=['POST'])
-def purify():
-    if 'image' not in request.files:
-        return jsonify({'error': 'No image file provided'}), 400
+@app.post("/purify")
+async def purify(image: UploadFile = File(...)):
+    if not image:
+        raise HTTPException(status_code=400, detail="No image file provided")
 
-    image_file = request.files['image']
-    img_path = os.path.join('/tmp', image_file.filename)
-    image_file.save(img_path)
+    img_path = os.path.join('/tmp', image.filename)
+    
+    with open(img_path, "wb") as buffer:
+        buffer.write(await image.read())
 
     purified_image, _ = purify_image(img_path)
 
@@ -23,7 +25,8 @@ def purify():
     img.save(img_byte_arr, format='PNG')
     img_byte_arr.seek(0)
 
-    return send_file(img_byte_arr, mimetype='image/png')
+    return StreamingResponse(img_byte_arr, media_type="image/png")
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    import uvicorn
+    uvicorn.run(app, host='0.0.0.0', port=5000)
