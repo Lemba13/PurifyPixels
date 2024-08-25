@@ -55,9 +55,26 @@ Request
 Response
 * The purified image in PNG format.
 
+
+Detect Steganography
+Endpoint: /detect
+
+Method: POST
+
+Request
+* Form-data with key `image` and the image file to be detected.
+
+Response
+* Text response of the class the image belongs to.
+
+
 1. Example with curl
     ```bash
     curl -X POST -F "image=@path/to/your/image.jpg" http://127.0.0.1:5000/purify --output purified_image.png
+    ```
+
+    ```bash
+    curl -X POST -F "image=@path/to/your/image.jpg" http://127.0.0.1:5000/detect
     ```
 
 2. Example with python
@@ -82,11 +99,11 @@ Response
 
 3. Example with postman
     1. Open Postman and create a new POST request.
-    2. Set the request URL to http://127.0.0.1:5000/purify.
+    2. Set the request URL to http://127.0.0.1:5000/purify or http://127.0.0.1:5000/purify
     3. In the "Body" tab, select "form-data".
     4. Add a new key with the name image, set the type to "File", and choose the image file you want to upload.
     5. Click "Send".
-    6. The response should contain the purified image. You can save this image from the response.
+    6. The response should contain the purified image (or the detection result). You can save this image from the response.
 
 ### LICENSE
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -94,7 +111,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## TODO
 - [x] Update the installation instructions.
 - [ ] Add usage examples.
-- [ ] Add a detection model
+- [x] Add a detection model
 - [ ] Integrate a database for storing images (maybe).
 - [ ] Implement API authentication mechanisms. (@Bong)
 - [ ] Internet (@Bong)
