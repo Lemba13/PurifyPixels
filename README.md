@@ -44,8 +44,7 @@ The application will be available at http://127.0.0.1:5000.
     ```
 
 ### API Usage
-**Purify Image
-Endpoint:** /purify
+##### Purify Image Endpoint: /purify
 
 Method: POST
 
@@ -56,8 +55,7 @@ Response
 * The purified image in PNG format.
 
 
-**Detect Steganography
-Endpoint:** /detect
+#### Detect Steganography Endpoint: /detect
 
 Method: POST
 
