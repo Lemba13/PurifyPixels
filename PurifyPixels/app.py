@@ -10,6 +10,7 @@ import tempfile
 
 app = FastAPI()
 
+# To remove steganographic content from an image
 @app.post("/purify")
 async def purify(image: UploadFile = File(...)):
     if not image:
@@ -25,10 +26,6 @@ async def purify(image: UploadFile = File(...)):
     with open(img_path, "wb") as buffer:
         buffer.write(await image.read())
 
-    # with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as temp_file:
-    #     temp_file_path = temp_file.name
-    #     temp_file.write(await image.read())
-
     purified_image, _ = purify_image(img_path)
 
     img = Image.fromarray(purified_image)
@@ -38,6 +35,7 @@ async def purify(image: UploadFile = File(...)):
 
     return StreamingResponse(img_byte_arr, media_type="image/png")
 
+# To detect the type of steganographic content present in the image
 @app.post("/detect")
 async def detect(image: UploadFile = File(...)):
     if not image:
@@ -53,10 +51,8 @@ async def detect(image: UploadFile = File(...)):
     with open(img_path, "wb") as buffer:
         buffer.write(await image.read())
 
-    # with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as temp_file:
-    #     temp_file_path = temp_file.name
-    #     temp_file.write(await image.read())
 
+    # Call predict steganography function on the image sent by the api request
     result = predict_steganography(img_path)
 
     return PlainTextResponse(result)

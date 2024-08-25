@@ -6,6 +6,8 @@ from torchvision import transforms
 
 
 class SteganalysisDataset(Dataset):
+
+    # This class only returns a single image by doing the necessary preprocessing (similar to the ones used during training)
     def __init__(self, data_path):
         self.data_path = data_path
 
