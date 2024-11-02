@@ -1,7 +1,7 @@
 # PurifyPixels
 
 ## Overview
-PurifyPixels is an application that detects for any steganogrphic content in images and removes the steganographic content from images using a pre-trained generative model.
+PurifyPixels is an application that detects for any steganographic content in images and removes the steganographic content from images using a pre-trained generative model. For more details, refer to the [research paper](https://www.ijaresm.com/deep-learning-approach-to-analyse-and-eliminate-steganographic-content-in-images).
 
 ## Setting Up the Environment
 
@@ -106,10 +106,9 @@ Response
 ### LICENSE
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## TODO
-- [x] Update the installation instructions.
-- [ ] Add usage examples.
-- [x] Add a detection model
-- [ ] Integrate a database for storing images (maybe).
-- [ ] Implement API authentication mechanisms. (@Bong)
-- [ ] Internet (@Bong)
+### Citation
+```
+Prasanna, B. T., Das, A., Chinglemba, C., Alex D Nelson, K., & Ch, P. (2022). *Deep Learning Approach to Analyse and Eliminate Steganographic Content in Images*. International Journal of All Research Education and Scientific Methods. [https://doi.org/10.56025/IJARESM.2022.107793](https://doi.org/10.56025/IJARESM.2022.107793)
+```
+
+
